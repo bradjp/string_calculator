@@ -11,5 +11,8 @@ describe StringCalculator do
     it 'returns the number when passed a single number as a string' do
       expect(subject.add('1')).to eq(1)
     end
+    it 'returns the sum of 2 numbers passed as a string' do
+      expect(subject.add('1,2')).to eq(3)
+    end
   end
 end
