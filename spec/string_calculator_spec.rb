@@ -14,5 +14,8 @@ describe StringCalculator do
     it 'returns the sum of 2 numbers passed as a string' do
       expect(subject.add('1,2')).to eq(3)
     end
+    it 'returns the sum of any amount of numbers passed as a string and comma-separated' do
+      expect(subject.add('1,2,3,4,5')).to eq(15)
+    end
   end
 end
