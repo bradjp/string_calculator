@@ -27,3 +27,11 @@ For an empty string it will return 0.
 Step 2
 
 Allow the Add method to handle an unknown amount of numbers.
+
+Step 3
+
+Allow the Add method to handle new lines between numbers (instead of commas):
+
+    The following input is ok: “1\n2,3” (will equal 6)
+
+    The following input is NOT ok: “1,\n” (no need to prove it - just clarifying)

@@ -17,5 +17,8 @@ describe StringCalculator do
     it 'returns the sum of any amount of numbers passed as a string and comma-separated' do
       expect(subject.add('1,2,3,4,5')).to eq(15)
     end
+    it 'can process \n separations as well as commas' do
+      expect(subject.add("1\n2,3")).to eq(6)
+    end
   end
 end
