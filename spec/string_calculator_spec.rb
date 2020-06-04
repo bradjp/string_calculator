@@ -1,7 +1,6 @@
 require 'string_calculator'
 
 describe StringCalculator do
-  
   subject(:double) { described_class.new }
 
   describe '#add' do
