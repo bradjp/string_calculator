@@ -3,27 +3,32 @@
 #:nodoc:
 class StringCalculator
   def add(string_numbers)
-
-    if string_numbers[0..1] == '//'
-
-      string_numbers = string_numbers.split("\n")
-      
-      delimiter = string_numbers[0][2..-1]
-      nums = string_numbers[1]
-
-      arr = nums.split(delimiter)
-
-      arr.map(&:to_i).inject(0, :+)
-
+    if string_numbers[0..1] != '//'
+      process_string(string_numbers)
     else
-      arr = []
-
-      x = string_numbers.split("\n")
-
-      x.each { |el| arr << el.split(',') }
-
-      arr.flatten.map(&:to_i).inject(0, :+)
+      process_custom_delimiter(string_numbers)
     end
-    
+  end
+
+  private
+
+  def process_string(string_numbers)
+    arr = []
+
+    nums = string_numbers.split("\n")
+
+    nums.each { |el| arr << el.split(',') }
+
+    arr.flatten.map(&:to_i).inject(0, :+)
+  end
+
+  def process_custom_delimiter(string_numbers)
+    string_numbers = string_numbers.split("\n")
+
+    delimiter = string_numbers[0][2..-1]
+
+    nums = string_numbers[1]
+
+    nums.split(delimiter).map(&:to_i).inject(0, :+)
   end
 end
