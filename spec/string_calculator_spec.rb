@@ -21,5 +21,8 @@ describe StringCalculator do
     it 'can process \n separations as well as commas' do
       expect(subject.add("1\n2,3")).to eq(6)
     end
+    it 'can accept custom delimiters' do
+      expect(subject.add("//;\n1;2")).to eq(3)
+    end
   end
 end
