@@ -24,5 +24,8 @@ describe StringCalculator do
     it 'can accept custom delimiters' do
       expect(subject.add("//;\n1;2")).to eq(3)
     end
+    it 'throws an error when passed a negative number' do
+      expect { subject.add('-1') }.to raise_exception(StandardError, 'Negatives not allowed (-1)')
+    end
   end
 end
