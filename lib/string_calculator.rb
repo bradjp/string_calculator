@@ -21,6 +21,8 @@ class StringCalculator
 
     ints = arr.flatten.map(&:to_i)
 
+    ints.select! { |num| num <= 1000 }
+
     check_for_negatives(ints)
 
     ints.inject(0, :+)
