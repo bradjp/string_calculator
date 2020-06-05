@@ -19,19 +19,11 @@ class StringCalculator
 
     nums.each { |el| arr << el.split(',') }
 
-    x = arr.flatten.map(&:to_i)
+    ints = arr.flatten.map(&:to_i)
 
-    negatives = []
+    check_for_negatives(ints)
 
-    x.each do |num| 
-      if num < 0
-        negatives << num
-      end
-    end
-      
-    raise StandardError.new "Negatives not allowed (#{negatives[0]})" unless negatives.empty?
-    
-    x.inject(0, :+)
+    ints.inject(0, :+)
   end
 
   def process_custom_delimiter(string_numbers)
@@ -42,5 +34,14 @@ class StringCalculator
     nums = string_numbers[1]
 
     nums.split(delimiter).map(&:to_i).inject(0, :+)
+  end
+
+  def check_for_negatives(ints)
+    negatives = []
+
+    ints.each do |num|
+      negatives << num if num.negative?
+    end
+    raise StandardError, "Negatives not allowed (#{negatives[0]})" unless negatives.empty?
   end
 end
