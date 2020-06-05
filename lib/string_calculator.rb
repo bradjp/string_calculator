@@ -22,18 +22,22 @@ class StringCalculator
     ints = arr.flatten.map(&:to_i)
 
     check_for_negatives(ints)
-
+    
     ints.inject(0, :+)
   end
-
+  
   def process_custom_delimiter(string_numbers)
     string_numbers = string_numbers.split("\n")
-
+    
     delimiter = string_numbers[0][2..-1]
-
+    
     nums = string_numbers[1]
 
-    nums.split(delimiter).map(&:to_i).inject(0, :+)
+    ints = nums.split(delimiter).map(&:to_i)
+    
+    check_for_negatives(ints)
+    
+    ints.inject(0, :+)
   end
 
   def check_for_negatives(ints)

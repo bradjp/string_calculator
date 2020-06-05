@@ -33,5 +33,8 @@ describe StringCalculator do
     it 'throws an error when passed multiple negative numbers' do
       expect { subject.add('1,0,-1,-2,-3,-4') }.to raise_exception(StandardError, 'Negatives not allowed (-1,-2,-3,-4)')
     end
+    it 'throws an error when passed multiple negative numbers - and a custom delimiter' do
+      expect { subject.add("//;\n1;0;-1;-2;-3;-4") }.to raise_exception(StandardError, 'Negatives not allowed (-1,-2,-3,-4)')
+    end
   end
 end
