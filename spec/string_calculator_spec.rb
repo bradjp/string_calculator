@@ -39,5 +39,8 @@ describe StringCalculator do
     it 'ignores numbers larger than 1000' do
       expect(subject.add('1,2,1001')).to eq(3)
     end
+    it 'ignores numbers larger than 1000 when passed a custom delimiter' do
+      expect(subject.add("//;\n1;2;1001")).to eq(3)
+    end
   end
 end
