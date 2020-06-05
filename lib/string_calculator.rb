@@ -42,6 +42,9 @@ class StringCalculator
     ints.each do |num|
       negatives << num if num.negative?
     end
-    raise StandardError, "Negatives not allowed (#{negatives[0]})" unless negatives.empty?
+
+    negatives_string = negatives.join(',')
+
+    raise StandardError, "Negatives not allowed (#{negatives_string})" unless negatives.empty?
   end
 end

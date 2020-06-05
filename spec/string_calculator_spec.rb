@@ -27,5 +27,11 @@ describe StringCalculator do
     it 'throws an error when passed a negative number' do
       expect { subject.add('-1') }.to raise_exception(StandardError, 'Negatives not allowed (-1)')
     end
+    it 'throws an error when passed two negative numbers' do
+      expect { subject.add('1,0,-1,-2') }.to raise_exception(StandardError, 'Negatives not allowed (-1,-2)')
+    end
+    it 'throws an error when passed multiple negative numbers' do
+      expect { subject.add('1,0,-1,-2,-3,-4') }.to raise_exception(StandardError, 'Negatives not allowed (-1,-2,-3,-4)')
+    end
   end
 end
