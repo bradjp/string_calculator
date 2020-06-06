@@ -32,16 +32,30 @@ class StringCalculator
     string_numbers = string_numbers.split("\n")
 
     delimiter = string_numbers[0][2..-1]
+    long_delimiter = delimiter[1..-2]
 
-    nums = string_numbers[1]
+    if delimiter[0] == '[' && delimiter[-1] == ']'
+      nums = string_numbers[1]
+  
+      ints = nums.split(long_delimiter).map(&:to_i)
+  
+      ints.select! { |num| num <= 1000 }
+  
+      check_for_negatives(ints)
+  
+      ints.inject(0, :+)
 
-    ints = nums.split(delimiter).map(&:to_i)
-
-    ints.select! { |num| num <= 1000 }
-
-    check_for_negatives(ints)
-
-    ints.inject(0, :+)
+    else
+      nums = string_numbers[1]
+  
+      ints = nums.split(delimiter).map(&:to_i)
+  
+      ints.select! { |num| num <= 1000 }
+  
+      check_for_negatives(ints)
+  
+      ints.inject(0, :+)
+    end
   end
 
   def check_for_negatives(ints)
