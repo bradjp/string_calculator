@@ -3,11 +3,7 @@
 #:nodoc:
 class StringCalculator
   def add(string_numbers)
-    if string_numbers[0..1] != '//'
-      process_string(string_numbers)
-    else
-      process_custom_delimiter(string_numbers)
-    end
+    string_numbers[0..1] != '//' ? process_string(string_numbers) : process_custom_delimiter(string_numbers)
   end
 
   private
@@ -34,27 +30,10 @@ class StringCalculator
     delimiter = string_numbers[0][2..-1]
     long_delimiter = delimiter[1..-2]
 
-    if delimiter[0] == '[' && delimiter[-1] == ']'
-      nums = string_numbers[1]
-  
-      ints = nums.split(long_delimiter).map(&:to_i)
-  
-      ints.select! { |num| num <= 1000 }
-  
-      check_for_negatives(ints)
-  
-      ints.inject(0, :+)
-
+    if custom_delimiter(delimiter)
+      calculate(long_delimiter, string_numbers)
     else
-      nums = string_numbers[1]
-  
-      ints = nums.split(delimiter).map(&:to_i)
-  
-      ints.select! { |num| num <= 1000 }
-  
-      check_for_negatives(ints)
-  
-      ints.inject(0, :+)
+      calculate(delimiter, string_numbers)
     end
   end
 
@@ -68,5 +47,21 @@ class StringCalculator
     negatives_string = negatives.join(',')
 
     raise StandardError, "Negatives not allowed (#{negatives_string})" unless negatives.empty?
+  end
+
+  def calculate(delimiter, string_numbers)
+    nums = string_numbers[1]
+
+    ints = nums.split(delimiter).map(&:to_i)
+
+    ints.select! { |num| num <= 1000 }
+
+    check_for_negatives(ints)
+
+    ints.inject(0, :+)
+  end
+
+  def custom_delimiter(delimiter)
+    delimiter[0] == '[' && delimiter[-1] == ']'
   end
 end
