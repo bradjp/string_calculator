@@ -48,5 +48,8 @@ describe StringCalculator do
     it 'allows multiple delimiters' do
       expect(subject.add("//[*][%]\n1*2%3")).to eq(6)
     end
+    it 'allows multiple delimiters of more than 1 character' do
+      expect(subject.add("//[**][%$][%%]\n1*2%3")).to eq(6)
+    end
   end
 end
