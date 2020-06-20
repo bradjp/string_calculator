@@ -31,9 +31,7 @@ class StringCalculator
     long_delimiter = delimiter[1..-2]
     
     if custom_delimiter(delimiter) && delimiter.scan("][").length > 0
-      delims = long_delimiter.split("][").join
-      comma_string = string_numbers[1].tr!(delims,',').split(',').map(&:to_i).inject(&:+)
-      
+      calculate_multiple_delimiters(long_delimiter, string_numbers)
     elsif custom_delimiter(delimiter)
       calculate(long_delimiter, string_numbers)
     else
@@ -67,5 +65,10 @@ class StringCalculator
 
   def custom_delimiter(delimiter)
     delimiter[0] == '[' && delimiter[-1] == ']'
+  end
+
+  def calculate_multiple_delimiters(long_delimiter, string_numbers)
+    delims = long_delimiter.split("][").join
+    comma_string = string_numbers[1].tr!(delims,',').split(',').map(&:to_i).inject(&:+)
   end
 end
