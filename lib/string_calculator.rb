@@ -29,8 +29,12 @@ class StringCalculator
 
     delimiter = string_numbers[0][2..-1]
     long_delimiter = delimiter[1..-2]
-
-    if custom_delimiter(delimiter)
+    
+    if custom_delimiter(delimiter) && delimiter.scan("][").length > 0
+      delims = long_delimiter.split("][").join
+      comma_string = string_numbers[1].tr!(delims,',').split(',').map(&:to_i).inject(&:+)
+      
+    elsif custom_delimiter(delimiter)
       calculate(long_delimiter, string_numbers)
     else
       calculate(delimiter, string_numbers)
